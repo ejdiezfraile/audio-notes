@@ -1,0 +1,201 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+}
+
+h2 {
+  color: #555;
+  margin: 30px 0 15px 0;
+  font-size: 1.5em;
+}
+
+.recorder-section {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 15px 25px;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 160px;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-start {
+  background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+  color: white;
+}
+
+.btn-start:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+}
+
+.btn-stop {
+  background: linear-gradient(45deg, #feca57, #ff9ff3);
+  color: white;
+}
+
+.btn-stop:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(254, 202, 87, 0.3);
+}
+
+.btn-play {
+  background: linear-gradient(45deg, #48dbfb, #0abde3);
+  color: white;
+}
+
+.btn-play:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(72, 219, 251, 0.3);
+}
+
+.btn-secondary {
+  background: linear-gradient(45deg, #a55eea, #26de81);
+  color: white;
+  padding: 10px 20px;
+  font-size: 14px;
+  min-width: auto;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(165, 94, 234, 0.3);
+}
+
+.status {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#status {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+#timer {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  font-family: "Courier New", monospace;
+}
+
+.audio-section {
+  text-align: center;
+  margin: 20px 0;
+}
+
+#audioPlayback {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.recordings-section {
+  border-top: 2px solid #eee;
+  padding-top: 20px;
+}
+
+#recordingsList {
+  list-style: none;
+  margin-top: 15px;
+}
+
+#recordingsList li {
+  background: #f8f9fa;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 4px solid #667eea;
+}
+
+#recordingsList li:hover {
+  background: #e9ecef;
+  transform: translateX(5px);
+  transition: all 0.3s ease;
+}
+
+.recording-name {
+  font-weight: bold;
+  color: #333;
+}
+
+.recording-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.recording-controls button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.play-recording {
+  background: #48dbfb;
+  color: white;
+}
+
+.download-recording {
+  background: #26de81;
+  color: white;
+}
+
+@media (max-width: 600px) {
+  .container {
+    margin: 10px;
+    padding: 20px;
+  }
+
+  .recorder-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 250px;
+  }
+}

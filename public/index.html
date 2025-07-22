@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grabador de Audio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎤 Grabador de Audio</h1>
+        
+        <div class="recorder-section">
+            <button id="startBtn" class="btn btn-start">
+                🔴 Iniciar Grabación
+            </button>
+            <button id="stopBtn" class="btn btn-stop" disabled>
+                ⏹️ Detener Grabación
+            </button>
+            <button id="playBtn" class="btn btn-play" disabled>
+                ▶️ Reproducir
+            </button>
+        </div>
+
+        <div class="status">
+            <p id="status">Listo para grabar</p>
+            <div id="timer">00:00</div>
+        </div>
+
+        <div class="audio-section">
+            <audio id="audioPlayback" controls style="display: none;"></audio>
+        </div>
+
+        <div class="recordings-section">
+            <h2>📁 Grabaciones Guardadas</h2>
+            <button id="refreshBtn" class="btn btn-secondary">🔄 Actualizar Lista</button>
+            <ul id="recordingsList"></ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
