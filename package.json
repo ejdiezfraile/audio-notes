@@ -6,16 +6,23 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "dev": "node --watch server.js"
+    "dev": "node --watch server.js",
+    "transcribe:es": "node transcribe-groq.js ./audio.mp3 es",
+    "transcribe:en": "node transcribe-groq.js ./audio.mp3 en",
+    "transcribe:auto": "node transcribe-groq.js ./audio.mp3"
   },
   "dependencies": {
     "express": "^4.18.2",
+    "formdata-node": "^6.0.3",
     "multer": "^1.4.5-lts.1"
   },
   "engines": {
     "node": ">=21.0.0"
   },
-  "keywords": ["audio-notes", "nodejs"],
+  "keywords": [
+    "audio-notes",
+    "nodejs"
+  ],
   "author": "Emilio",
   "license": "MIT"
 }

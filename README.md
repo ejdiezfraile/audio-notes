@@ -70,3 +70,50 @@ audio-recorder-webapp/
    ```
 
 4. **Abrir en el navegador**
+
+
+
+
+# groq-whisper-transcribe
+
+Script Node.js para transcribir archivos de audio usando la API de Groq y el modelo Whisper (`whisper-large-v3-turbo`).  
+
+La transcripción se guarda automáticamente en un archivo `.txt` con el mismo nombre y ubicación que el archivo de audio original.
+
+## Requisitos
+
+- Node.js v18 o superior (recomendado v20+)
+- Una clave API de Groq (`GROQ_API_KEY`)
+- Instalar dependencias:
+  ```sh
+  npm install formdata-node
+  ```
+
+## Uso
+
+1. Exporta tu clave de Groq en el entorno:
+   ```sh
+   export GROQ_API_KEY=tu_clave_de_groq
+   ```
+
+2. Ejecuta el script:
+   ```sh
+   node transcribeAudioGroq.js ruta/al/audio.mp3 [idioma]
+   ```
+
+   - El parámetro `idioma` es opcional (ejemplo: `es` para español, `en` para inglés). Si no se indica, Groq detecta el idioma automáticamente.
+
+3. La transcripción se guarda en el mismo directorio, con extensión `.txt`:
+   - Ejemplo: `audio.mp3` → `audio.txt`
+
+## Ejemplo
+
+```sh
+node transcribeAudioGroq.js ./grabacion.mp3 es
+```
+
+## Notas
+
+- El modelo por defecto es `whisper-large-v3-turbo`.
+- Si tienes dudas o quieres transcribir en otro idioma, simplemente añade el parámetro correspondiente.
+- El script no requiere el SDK de Groq.
