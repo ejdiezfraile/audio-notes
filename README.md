@@ -1,119 +1,120 @@
-# 🎤 Audio Recorder WebApp
+# 🎙️ Audio Recorder & Transcriber
 
-Una aplicación web sencilla y moderna para grabar audio usando Node.js 21 y la Web Audio API. Permite grabar, reproducir, guardar y descargar grabaciones de audio directamente desde el navegador.
+Aplicación web para **grabar audio** desde el navegador y **transcribirlo automáticamente** usando la API de Groq con el modelo Whisper (`whisper-large-v3-turbo`).
 
-## ✨ Características
+Combina:
+- **Audio Recorder WebApp**: grabación, reproducción y gestión de archivos de audio.
+- **Groq Whisper Transcriber**: transcripción automática de los audios grabados.
 
-- 🎙️ **Grabación de audio en tiempo real** usando MediaRecorder API
-- 💾 **Guardado automático** en el servidor local
+---
+
+## ✨ Características principales
+
+- 🎙️ **Grabación de audio en tiempo real** (MediaRecorder API)
+- 💾 **Guardado automático** de grabaciones en el servidor
 - ▶️ **Reproducción inmediata** de grabaciones
-- 📁 **Gestión de archivos** con lista de grabaciones guardadas
+- 📁 **Lista de archivos grabados**
 - ⬇️ **Descarga de archivos** de audio
-- ⏱️ **Timer en tiempo real** durante la grabación
-- 📱 **Diseño responsive** para móviles y escritorio
-- 🎨 **Interfaz moderna** con gradientes y animaciones
-- 🔊 **Audio de alta calidad** (44.1kHz, formato WebM/Opus)
+- 📝 **Transcripción automática** con la API de Groq y Whisper
+- 🔊 **Audio de alta calidad** (44.1kHz, WebM/Opus)
+- 📱 **Diseño responsive**
 
-## 🛠️ Tecnologías Utilizadas
+---
 
-- **Backend**: Node.js 21+ con ES Modules
+## 🛠️ Tecnologías utilizadas
+
+- **Backend**: Node.js 21+ (grabación) y Node.js 18+ (transcripción)
 - **Framework**: Express.js
 - **Upload de archivos**: Multer
 - **Frontend**: HTML5, CSS3, JavaScript (Vanilla)
-- **Audio API**: MediaRecorder API, Web Audio API
-- **Formato de audio**: WebM con códec Opus
+- **APIs**: MediaRecorder API, Web Audio API, Groq Whisper API
 
-## 📁 Estructura del Proyecto
+---
+
+## 📁 Estructura del proyecto
 
 ```
-audio-recorder-webapp/
-├── server.js              # Servidor Express principal
-├── package.json           # Dependencias y scripts
-├── README.md             # Documentación del proyecto
-├── public/               # Archivos estáticos del frontend
-│   ├── index.html        # Página principal
-│   ├── style.css         # Estilos CSS
-│   └── script.js         # Lógica JavaScript del cliente
-└── recordings/           # Carpeta de grabaciones (se crea automáticamente)
-    └── recording-*.webm  # Archivos de audio grabados
+audio-notes/
+├── server.js               # Servidor Express para grabación
+├── transcribe-groq.js      # Script Node.js para transcripción
+├── package.json            # Dependencias y scripts
+├── public/                 # Archivos estáticos del frontend
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+└── recordings/             # Grabaciones generadas
+    └── recording-*.webm
 ```
 
-## 🚀 Instalación y Uso
+---
 
-### Prerrequisitos
+## 🚀 Instalación y uso
 
-- Node.js versión 21 o superior
-- npm (incluido con Node.js)
-- Navegador web moderno con soporte para MediaRecorder API
+### ✅ Requisitos previos
 
-### Pasos de instalación
+- Node.js versión 21+ para la grabadora
+- Navegador moderno compatible con MediaRecorder API
+- Clave API de Groq (`GROQ_API_KEY`)
 
-1. **Clonar o descargar el proyecto**
+### 📦 Instalación
+
+1. Clonar repositorio:
+
    ```bash
-   # Si tienes el código en un repositorio
    git clone <url-del-repositorio>
-   cd audio-recorder-webapp
+   cd audio-notes
    ```
 
-2. **Instalar dependencias**
+2. Instalar dependencias:
+
    ```bash
    npm install
    ```
 
-3. **Ejecutar la aplicación**
-   ```bash
-   # Modo producción
-   npm start
-   
-   # Modo desarrollo (con auto-reload)
-   npm run dev
-   ```
+### ▶️ Ejecutar la grabadora
 
-4. **Abrir en el navegador**
+```bash
+# Modo producción
+npm start
 
+# Modo desarrollo (con auto-reload)
+npm run dev
+```
 
+Abre en tu navegador para comenzar a grabar.
 
-
-# groq-whisper-transcribe
-
-Script Node.js para transcribir archivos de audio usando la API de Groq y el modelo Whisper (`whisper-large-v3-turbo`).  
-
-La transcripción se guarda automáticamente en un archivo `.txt` con el mismo nombre y ubicación que el archivo de audio original.
-
-## Requisitos
-
-- Node.js v18 o superior (recomendado v20+)
-- Una clave API de Groq (`GROQ_API_KEY`)
-- Instalar dependencias:
-  ```sh
-  npm install formdata-node
-  ```
-
-## Uso
+### 📝 Ejecutar la transcripción
 
 1. Exporta tu clave de Groq en el entorno:
-   ```sh
+
+   ```bash
    export GROQ_API_KEY=tu_clave_de_groq
    ```
 
-2. Ejecuta el script:
-   ```sh
-   node transcribeAudioGroq.js ruta/al/audio.mp3 [idioma]
+2. Ejecuta el script de transcripción:
+
+   ```bash
+   node transcribe-groq.js ruta/al/audio.webm [idioma]
    ```
 
-   - El parámetro `idioma` es opcional (ejemplo: `es` para español, `en` para inglés). Si no se indica, Groq detecta el idioma automáticamente.
+   - `idioma` es opcional (ejemplo: `es` para español).
 
-3. La transcripción se guarda en el mismo directorio, con extensión `.txt`:
-   - Ejemplo: `audio.mp3` → `audio.txt`
+3. La transcripción se guarda en el mismo directorio con extensión `.txt`.
 
-## Ejemplo
-
-```sh
-node transcribeAudioGroq.js ./grabacion.mp3 es
+Ejemplo:
+```bash
+node transcribe-groq.js ./recordings/recording-1.webm es
 ```
 
-## Notas
+---
 
-- El modelo por defecto es `whisper-large-v3-turbo`.
-- Si tienes dudas o quieres transcribir en otro idioma, simplemente añade el parámetro correspondiente.
-- El script no requiere el SDK de Groq.
+## 🤝 Créditos
+
+- 🎤 **Audio Recorder WebApp** por [ejdiezfraile]
+- 📝 **Groq Whisper Transcriber** por [Tejdiezfraile]
+
+---
+
+## 📄 Licencia
+
+MIT

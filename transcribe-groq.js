@@ -6,8 +6,8 @@ import { fileFromPath } from "formdata-node/file-from-path";
 // Obtiene la clave de la variable de entorno
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 
-// Uso: node transcribeAudioGroq.js <ruta-audio> [idioma]
-// Ejemplo: node transcribeAudioGroq.js ./audio.mp3 es
+// Uso: node transcribe-groq.js <ruta-audio> [idioma]
+// Ejemplo: node transcribe-groq.js ./audio.mp3 es
 const audioFilePath = process.argv[2];
 const language = process.argv[3]; // Ejemplo: "es" o "en"
 
@@ -17,7 +17,7 @@ if (!GROQ_API_KEY) {
 }
 
 if (!audioFilePath) {
-  console.error("Uso: node transcribeAudioGroq.js <ruta-audio> [idioma]");
+  console.error("Uso: node transcribe-groq.js <ruta-audio> [idioma]");
   process.exit(1);
 }
 
