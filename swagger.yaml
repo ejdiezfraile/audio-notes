@@ -1,0 +1,82 @@
+openapi: 3.0.0
+info:
+  title: Audio Notes API
+  version: 1.0.0
+  description: API para subir, listar y servir grabaciones de audio
+servers:
+  - url: http://localhost:3000
+paths:
+  /upload-audio:
+    post:
+      summary: Subir un archivo de audio
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                audio:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Audio guardado exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  filename:
+                    type: string
+                  path:
+                    type: string
+        '400':
+          description: No se recibió archivo de audio
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /recordings:
+    get:
+      summary: Listar grabaciones de audio
+      responses:
+        '200':
+          description: Lista de archivos de audio
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '500':
+          description: Error al leer directorio
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /recordings/{filename}:
+    get:
+      summary: Descargar una grabación de audio
+      parameters:
+        - name: filename
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Archivo de audio
+          content:
+            audio/webm:
+              schema:
+                type: string
+                format: binary
